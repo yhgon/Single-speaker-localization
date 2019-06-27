@@ -6,17 +6,21 @@ from keras.optimizers import SGD, Adam, RMSprop,Adagrad
 import scipy.io
 # Load trained model from the json file
 
+print('load json')
 json_file = open('Model_sin_CNN.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 
 #print json script
+print('print json')
 print(loaded_model_json)
 
+print('load model')
 loaded_model = model_from_json(loaded_model_json)
 
 # Load weights 
 
+print('load weight')
 loaded_model.load_weights('Weights_sin_CNN.h5')
 print("Loaded model from disk")
 
@@ -31,6 +35,7 @@ loaded_model.compile(loss='categorical_crossentropy', optimizer= adam)
 
 # Read test data from an hdf5 file called DOA_test
 
+print('load dataset')
 Test_data = h5py.File('DOA_test.hdf5')
 X_test = Test_data['features']                   # These are the phase maps for each time frame
 Y_test = Test_data['targets']
@@ -42,7 +47,9 @@ Y_test = np.array(Y_test)                        # size = (Number of time frames
 
 # Estimate DOA for each time frame in the test set 
 
+print('predict')
 Output = loaded_model.predict(X_test)           
 
+print('write down')
 # write predictions to file
 scipy.io.savemat('DOA_OP.mat', mdict={'Output': Output})
