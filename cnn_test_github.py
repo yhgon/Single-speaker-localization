@@ -9,12 +9,19 @@ import scipy.io
 json_file = open('Model_sin_CNN.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
+
+#print json script
+print(loaded_model_json)
+
 loaded_model = model_from_json(loaded_model_json)
 
 # Load weights 
 
 loaded_model.load_weights('Weights_sin_CNN.h5')
 print("Loaded model from disk")
+
+# print model
+loaded_model.summary()
 
 # Define the optimizer and compile the model
 
