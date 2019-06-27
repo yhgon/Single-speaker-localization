@@ -135,7 +135,7 @@
 				"config": {}},
 			"units": 512,
 			"use_bias": true,
-			activity_regularizer": null},
+			"activity_regularizer": null},
 		"inbound_nodes": [[["dropout_1", 0, 0, {}]]],
 		"name": "dense_1"},
 
